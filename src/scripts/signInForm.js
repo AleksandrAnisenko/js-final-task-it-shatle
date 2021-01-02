@@ -71,25 +71,30 @@ function activateButton() {
 
 signInButt.addEventListener('click', function(evt){
     evt.preventDefault();
-    checkUser();
+    createUser();
 })
 
-async function checkUser(){
+async function createUser(){
     let user = {
-            email: 'signInEmail.value',
-            password: 'signInPass.value'
+            email: signInEmail.value,
+            password: signInPass.value
         };
-    let result = await fetch('https://anisenko-api.herokuapp.com/create-user', {
+    let response = await fetch('https://anisenko-api.herokuapp.com/create-user', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(user)
     });
-    if (result == 1){
-        regEmail.style.display = 'block';
-        setTimeout(() => {
-            regEmail.style.opacity = '1';
-        },1);
-    } else {
-        alert('Юзер создан');
+
+    if(response.ok){
+        let result = await response.json();
+        if (result.status == 1){
+            regEmail.style.display = 'block';
+            setTimeout(() => {
+                regEmail.style.opacity = '1';
+            },1);
+        } 
+        if (result.status == 0){
+            alert('Такого юзера нету');
+        }
     }
 }
