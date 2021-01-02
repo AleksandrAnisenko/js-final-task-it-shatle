@@ -1,0 +1,12 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Black Ops One', 'Russo One', cursive;
+    color: #dddddd;
+}
+
+body {
+    background-color: #222222;
+    position: relative;
+}
+@import '_authentication';
