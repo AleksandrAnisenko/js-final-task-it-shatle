@@ -12,10 +12,7 @@ import './scripts/logInForm.js'
         document.location.href = "index2.html";
     });
 
-    if (location.href == 'index.html2'){
-    const back = document.getElementById('back');
-    back.addEventListener('click', function(){
-        document.location.href = "index.html";
-    })
-    }
+
+  
+    
 

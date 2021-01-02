@@ -5,12 +5,13 @@ const webpack = require('webpack')
 
 module.exports = {
     entry: {
-        main: ["babel-polyfill", path.resolve(__dirname, './src/index.js')],
+        'main': ["babel-polyfill", path.resolve(__dirname, './src/index.js')],
+        'mainPage': ["babel-polyfill", path.resolve(__dirname, './src/mainPage.js')],
         
     },
     output: {
         path: path.resolve(__dirname, './dist'),
-        filename: 'index.bundle.js',
+        filename: '[name].bundle.js',
     },
     mode: 'development',
     devServer: {
@@ -28,11 +29,13 @@ module.exports = {
     },
     plugins: [
         new HtmlWebpackPlugin({
+            chunks: ['main'],
             title: 'webpack Boilerplate',
             template: path.resolve(__dirname, './src/template.html'),
             filename: 'index.html',
         }),
         new HtmlWebpackPlugin({
+            chunks: ['mainPage'],
             title: 'webpack Boilerplate',
             template: path.resolve(__dirname, './src/secondary.html'),
             filename: 'index2.html',
