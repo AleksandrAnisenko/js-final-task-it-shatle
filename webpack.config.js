@@ -5,8 +5,8 @@ const webpack = require('webpack')
 
 module.exports = {
     entry: {
-        'main': ["babel-polyfill", path.resolve(__dirname, './src/index.js')],
-        'mainPage': ["babel-polyfill", path.resolve(__dirname, './src/mainPage.js')],
+        'index': ["babel-polyfill", path.resolve(__dirname, './src/index.js')],
+        'index2': ["babel-polyfill", path.resolve(__dirname, './src/index2.js')],
         
     },
     output: {
@@ -22,22 +22,17 @@ module.exports = {
         hot: true,
         port: 8080,
     },
-    plugins: {
-        'postcss-preset-env': {
-            browsers: 'last 2 versions',
-        },
-    },
     plugins: [
         new HtmlWebpackPlugin({
-            chunks: ['main'],
+            chunks: ['index'],
             title: 'webpack Boilerplate',
             template: path.resolve(__dirname, './src/template.html'),
             filename: 'index.html',
         }),
         new HtmlWebpackPlugin({
-            chunks: ['mainPage'],
+            chunks: ['index2'],
             title: 'webpack Boilerplate',
-            template: path.resolve(__dirname, './src/secondary.html'),
+            template: path.resolve(__dirname, './src/template2.html'),
             filename: 'index2.html',
         }),
         new CleanWebpackPlugin(),

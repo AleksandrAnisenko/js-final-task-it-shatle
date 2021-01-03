@@ -36,6 +36,7 @@
   },
   "dependencies": {
     "@babel/polyfill": "^7.12.1",
+    "detect.js": "^2.2.3",
     "node-sass": "^5.0.0",
     "postcss-preset-env": "^6.7.0"
   }

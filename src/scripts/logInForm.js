@@ -1,13 +1,25 @@
 const logInButt = document.getElementById('logInButt');
 const logInEmail = document.getElementById('logInEmail');
 const logInPass = document.getElementById('logInPass');
+const checkEmail = document.getElementById('check-email');
+const checkPass = document.getElementById('check-pass');
+
+logInEmail.addEventListener('input', function(){
+    checkEmail.style.display = 'none';
+    logInEmail.style.borderColor = '#3a4425';
+});
+
+logInPass.addEventListener('input', function(){
+    checkPass.style.display = 'none';
+    logInpass.style.borderColor = '#3a4425';
+});
 
 logInEmail.addEventListener('blur', function(){
     let testing = this.value;
     if (testing !== '') {
-        logInEmail.style.borderColor = 'yellowgreen';
+        logInEmail.style.borderColor = '#6fa500';
     } else {
-        logInEmail.style.borderColor = 'rgba(153, 205, 50, 0.2)';
+        logInEmail.style.borderColor = '#3a4425';
     }
     activateButton()
 });
@@ -15,9 +27,9 @@ logInEmail.addEventListener('blur', function(){
 logInPass.addEventListener('blur', function(){
     let testing = this.value;
     if (testing !== '') {
-        logInPass.style.borderColor = 'yellowgreen';
+        logInPass.style.borderColor = '#6fa500';
     } else {
-        logInPass.style.borderColor = 'rgba(153, 205, 50, 0.2)';
+        logInPass.style.borderColor = '#3a4425';
     }
     activateButton()
 });
@@ -41,7 +53,7 @@ logInButt.addEventListener('click', function(evt){
 
 async function checkUser(){
     let user = {
-            email: logInEmail.value,
+            email: logInEmail.value.toLowerCase(),
             password: logInPass.value
         };
         console.log(user)
@@ -55,13 +67,16 @@ async function checkUser(){
         let result = await response.json();
         console.log(result.description)
         if (result.status == 0){
-            alert('Такого юзера нету')
+            logInEmail.style.borderColor = 'red';
+            checkEmail.style.display = 'block';
         }
         if (result.status == 1){
-            alert('Неверный пароль')
+            logInPass.style.borderColor = 'red';
+            checkPass.style.display = 'block';
         }
         if (result.status == 2){
-            alert('Красава, такой юзер есть))')
+            localStorage.setItem('user', logInEmail.value)
+            document.location.href = "index2.html";
         }
     }
 }

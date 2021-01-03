@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>IT_SHATLE Project</title>
+    <title>IT_SHATLE Project Authentication</title>
     <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Russo+One&display=swap" rel="stylesheet">
   </head>
 
@@ -11,6 +11,8 @@
         <h3>LOG IN</h3>
         <h4 class="changeLogSign">SIGN IN</h4>
       </div>
+      <div id="check-email">USER IS NOT REGISTERED</div>
+      <div id="check-pass">INVALID PASSWORD</div>
       <form action="submit">
         <input id="logInEmail" autocomplete='off' type="email" placeholder="Email address">
         <input id="logInPass" type="password" placeholder="Password">
@@ -39,9 +41,8 @@
       </p>
         <input id="signInConfirmPass" type="password" placeholder="Confirm password">
         <button id="signInButt" class="disabled-true" disabled>SIGN IN</button>
+        <div id="reg-email">USER WITH THIS EMAIL IS ALREADY REGISTERED !!! </div>
       </form>
-      <div id="regEmail">USER WITH THIS EMAIL IS ALREADY REGISTERED !!! </div>
-      <div id="next">!@#</div>
     </div>
   </body>
 </html>

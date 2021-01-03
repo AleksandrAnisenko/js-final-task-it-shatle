@@ -1,0 +1,29 @@
+header {
+    width: 90vw;
+    margin: 0 auto 20px;
+    display: flex;
+    justify-content: space-between;
+
+    & .menu {
+        height: 80px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-grow: 1;
+        font-size: 28px;
+        color: #7f7f7f;
+        cursor: pointer;
+        border-bottom: 5px solid #6fa500;
+        transition: 1s;
+    }
+
+    & #main {
+        color: #dddddd; 
+        background-color: #3a4425;       
+    }
+
+    & #clients {
+        border-left: none;
+        border-right: none ;
+    }
+}
