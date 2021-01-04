@@ -9,7 +9,6 @@ header {
         display: flex;
         justify-content: center;
         align-items: center;
-        flex-grow: 1;
         font-size: 28px;
         color: #7f7f7f;
         cursor: pointer;
@@ -19,11 +18,24 @@ header {
 
     & #main {
         color: #dddddd; 
-        background-color: #3a4425;       
+        background-color: #3a4425; 
+        flex-grow: 4;      
     }
 
     & #clients {
-        border-left: none;
-        border-right: none ;
+        flex-grow: 4;
+    }
+
+    & #map {
+        flex-grow: 4;
+    }
+
+    & #log-out {
+        flex-grow: 1;
+
+        &:hover {
+            background-color: #3a0202;
+            color: #dddddd;
+        }
     }
 }

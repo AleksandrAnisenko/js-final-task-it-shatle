@@ -1,6 +1,7 @@
 const MAIN = document.getElementById('main');
 const CLIENTS = document.getElementById('clients');
 const MAP = document.getElementById('map');
+const LOG_OUT = document.getElementById('log-out');
 const SECTION_MAIN = document.getElementById('section-main');
 const SECTION_CLIENTS = document.getElementById('section-clients');
 const SECTION_MAP = document.getElementById('section-map');
@@ -46,7 +47,7 @@ USER_DEVICE.innerHTML = getPlatform();
 
 
 async function getClients() {
-    
+    CLIENTS_LIST.innerHTML = ''
     let result = await fetch('https://gist.githubusercontent.com/oDASCo/3f4014d24dc79e1e29b58bfa96afaa1b/raw/677516ee3bd278f7e3d805108596ca431d00b629/db.json').then(response =>
     response.json());
     let manAmount = 0;
@@ -112,15 +113,33 @@ async function getClients() {
         const DELETE_BUTTON = document.querySelectorAll('.del');
         const POP_UP_DEL = document.querySelectorAll('.popUpDel');
         
+        
         for (let i = 0; i < DELETE_BUTTON.length; i++) {
         DELETE_BUTTON[i].addEventListener('click', function(){
-            POP_UP_DEL[i].style.display = 'block';
+            POP_UP_DEL[i].style.display = 'flex';
+            const YES_BUTT_CREATE = document.createElement('div');
+            YES_BUTT_CREATE.classList.add('yes-del');
+            YES_BUTT_CREATE.innerHTML = 'YES';
+            POP_UP_DEL[i].appendChild(YES_BUTT_CREATE);
+            const NO_BUTT_CREATE = document.createElement('div');
+            NO_BUTT_CREATE.classList.add('no-del');
+            NO_BUTT_CREATE.innerHTML = 'NO';
+            POP_UP_DEL[i].appendChild(NO_BUTT_CREATE);
+
+            const YES_BUTT = document.querySelectorAll('.yes-del');
+            const NO_BUTT = document.querySelectorAll('.no-del');
+            YES_BUTT[0].addEventListener('click', function(){
+                this.parentElement.parentElement.parentElement.remove(); 
+            });
+            NO_BUTT[0].addEventListener('click', function(){
+                this.parentElement.style.display = 'none'; 
+            });
+            
         // this.parentElement.parentElement.remove();
     });
 };
 }
 
-getClients();
 
 
 
@@ -138,6 +157,7 @@ MAIN.addEventListener('click', function(){
 });
 
 CLIENTS.addEventListener('click', function(){
+    getClients();
     SECTION_MAIN.style.display = 'none';
     SECTION_MAP.style.display = 'none';
     SECTION_CLIENTS.style.display = 'block';
@@ -159,4 +179,9 @@ MAP.addEventListener('click', function(){
     this.style.color = '#dddddd';
     MAIN.style.color = '#7f7f7f';
     CLIENTS.style.color = '#7f7f7f';
+});
+
+LOG_OUT.addEventListener('click', function(){
+    localStorage.removeItem('user')
+    document.location.href = "index.html";
 });
