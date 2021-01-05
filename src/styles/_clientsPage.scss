@@ -14,6 +14,7 @@
             & th {
                 font-size: 16px;
                 border: 3px solid #6fa500;
+                position: relative;
             }
 
             & td {
@@ -27,32 +28,66 @@
                     border: 2px solid  #3a4425;
                     color: #7f7f7f;
                 }
+
+                .del {
+                    position: absolute;
+                    bottom: 0;
+                    right: 0;
+                    height: 30%;
+                    width: 50%;
+                    color: #a00101;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    cursor: pointer;
+                
+                    &:hover {
+                        border: 1px solid #a00101;
+                    }
+                }
             }
 
         }
     }
-}
 
-.del {
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    height: 30%;
-    width: 50%;
-    color: #a00101;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-
-    &:hover {
-        border: 1px solid #a00101;
+    & .pop-up-info{
+        display: none;
+        justify-content: center;
+        align-items: center;
+        position: fixed;
+        bottom: 20px;
+        left: 20px;
+        height: 30%;
+        width: 30%;
+        background-color: #3a4425;
+        border-radius: 25px;
+        opacity: 0;
+        transition: 2s;
+        font-size: 26px;
     }
 }
+
+#section-map {
+    width: 90vw;
+    height: 80vh;
+    margin: 20px auto 0;
+    display: none;
+
+    & #map {
+        width: 100%;
+        height: 100%;
+        margin: 0 auto;
+        display: flex;
+        justify-content: center;
+    }
+}
+
+
 
 .popUpDel {
     background-color: #3a4425;
     display: none;
+    flex-direction: column;
     position: absolute;
     left: 0;
     bottom: 0;
@@ -60,24 +95,32 @@
     height: 100%;
     justify-content: space-around;
     align-items: center;
-}
 
-.yes-del {
-    color: #6fa500;
-    cursor: pointer;
+    & .yes-no-wrapper{
+        display: flex;
+        width: 100%;
+        justify-content: space-evenly;
+    }
 
-    &:hover {
-        text-decoration: underline;
-        text-decoration-color: #6fa500;
+    .yes-del {
+        color: #6fa500;
+        cursor: pointer;
+    
+        &:hover {
+            text-decoration: underline;
+            text-decoration-color: #6fa500;
+        }
+    }
+    
+    .no-del {
+        color: red;
+        cursor: pointer;
+    
+        &:hover {
+            text-decoration: underline;
+            text-decoration-color: red;
+        }
     }
 }
 
-.no-del {
-    color: red;
-    cursor: pointer;
 
-    &:hover {
-        text-decoration: underline;
-        text-decoration-color: red;
-    }
-}

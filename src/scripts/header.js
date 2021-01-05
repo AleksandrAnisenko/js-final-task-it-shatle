@@ -11,6 +11,12 @@ const CLIENTS_LIST = document.getElementById('clients-list');
 const GENDER_MAN = document.getElementById('gender-man');
 const GENDER_WOMAN = document.getElementById('gender-woman');
 const MAX_BALANCE = document.getElementById('max-balance');
+const POP_UP_DEL = document.querySelector('.popUpDel');
+const YES_DEL_BUTT = document.querySelector('.yes-del');
+const NO_DEL_BUTT = document.querySelector('.no-del');
+const POP_UP_INFO = document.querySelector('.pop-up-info');
+
+
 
 
 
@@ -47,7 +53,6 @@ USER_DEVICE.innerHTML = getPlatform();
 
 
 async function getClients() {
-    CLIENTS_LIST.innerHTML = ''
     let result = await fetch('https://gist.githubusercontent.com/oDASCo/3f4014d24dc79e1e29b58bfa96afaa1b/raw/677516ee3bd278f7e3d805108596ca431d00b629/db.json').then(response =>
     response.json());
     let manAmount = 0;
@@ -95,9 +100,6 @@ async function getClients() {
                         closeDiv.innerHTML = 'DELETE';
                         closeDiv.classList.add('del');
                         td.appendChild(closeDiv);
-                        let popUpDel = document.createElement('div');
-                        popUpDel.classList.add('popUpDel');
-                        td.appendChild(popUpDel);
                         break;
                   };
                 
@@ -111,31 +113,27 @@ async function getClients() {
             CLIENTS_LIST.appendChild(tr);
         }
         const DELETE_BUTTON = document.querySelectorAll('.del');
-        const POP_UP_DEL = document.querySelectorAll('.popUpDel');
+ 
         
         
         for (let i = 0; i < DELETE_BUTTON.length; i++) {
         DELETE_BUTTON[i].addEventListener('click', function(){
-            POP_UP_DEL[i].style.display = 'flex';
-            const YES_BUTT_CREATE = document.createElement('div');
-            YES_BUTT_CREATE.classList.add('yes-del');
-            YES_BUTT_CREATE.innerHTML = 'YES';
-            POP_UP_DEL[i].appendChild(YES_BUTT_CREATE);
-            const NO_BUTT_CREATE = document.createElement('div');
-            NO_BUTT_CREATE.classList.add('no-del');
-            NO_BUTT_CREATE.innerHTML = 'NO';
-            POP_UP_DEL[i].appendChild(NO_BUTT_CREATE);
-
-            const YES_BUTT = document.querySelectorAll('.yes-del');
-            const NO_BUTT = document.querySelectorAll('.no-del');
-            YES_BUTT[0].addEventListener('click', function(){
-                this.parentElement.parentElement.parentElement.remove(); 
+            this.parentElement.appendChild(POP_UP_DEL);
+            POP_UP_DEL.style.display = 'flex';
+            YES_DEL_BUTT.addEventListener('click', function(){
+                this.parentElement.parentElement.parentElement.parentElement.remove();
+                POP_UP_INFO.style.display = "flex";
+                setTimeout(function(){
+                    POP_UP_INFO.style.opacity = "1";
+                },100);
+                setTimeout(function(){
+                    POP_UP_INFO.style.opacity = "0";
+                },5000);
+                POP_UP_INFO.style.display = "flex";
             });
-            NO_BUTT[0].addEventListener('click', function(){
-                this.parentElement.style.display = 'none'; 
+            NO_DEL_BUTT.addEventListener('click', function(){
+                this.parentElement.parentElement.remove();
             });
-            
-        // this.parentElement.parentElement.remove();
     });
 };
 }
