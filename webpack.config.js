@@ -10,13 +10,13 @@ module.exports = {
         
     },
     output: {
-        path: path.resolve(__dirname, './dist'),
+        path: path.resolve(__dirname, './build'),
         filename: '[name].bundle.js',
     },
     mode: 'development',
     devServer: {
         historyApiFallback: true,
-        contentBase: path.resolve(__dirname, './dist'),
+        contentBase: path.resolve(__dirname, './build'),
         open: true,
         compress: true,
         hot: true,
